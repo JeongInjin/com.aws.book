@@ -8,6 +8,12 @@ const page = {
             page.update();
         });
 
+        $('#btn-delete').on('click', () =>{
+            page.delete();
+        });
+    },
+    getId: () =>{
+        return $("#id").val();
     },
     validation: (data) => {
         let result = true;
@@ -48,16 +54,28 @@ const page = {
           title: $("#title").val(),
           content: $("#content").val()
       };
-      const id = $("#id").val();
 
         $.ajax({
             type: 'PUT',
-            url: '/api/v1/posts/'+id,
+            url: '/api/v1/posts/' + page.getId(),
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
             alert('글이 수정되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+    delete: () =>{
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/posts/' + page.getId(),
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+        }).done(function() {
+            alert('글이 삭제되었습니다.');
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));
