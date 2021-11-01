@@ -17,6 +17,6 @@ cache:
 script: "./gradlew clean build"
 
 notifications:
-email:
-recipients:
-  - snowwwww12@gmail.com
+  email:
+    recipients:
+      - snowwwww12@gmail.com
