@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REPOSITORY=/home/ec2-user/app/step2
-PROJECT_NAME=freelec-springboot2-webservice
+PROJECT_NAME=jeong-springboot-webservice
 
 echo "> Build 파일 복사"
 
@@ -9,7 +9,9 @@ cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> 현재 구동중인 애플리케이션 pid 확인"
 
-CURRENT_PID=$(pgrep -fl freelec-springboot2-webservice | grep jar | awk '{print $1}')
+ #현재 수행중인 스프링부트 애플리케이션의 프로세스 ID를 찾습니다.
+ #실행중이면 종료하기 위함.
+CURRENT_PID=$(pgrep -fl jeong-springboot-webservice | grep jar | awk '{print $1}')
 
 echo "현재 구동중인 어플리케이션 pid: $CURRENT_PID"
 
